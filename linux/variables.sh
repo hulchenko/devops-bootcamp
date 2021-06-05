@@ -6,7 +6,7 @@ test_variable=config.yaml
 
 config_dir=$1
 
-if [-d "$config_dir" ]
+if [ -d "$config_dir" ]
 then
 	echo "Reading config directory: "
 	config_files=$(ls "$config_dir")
@@ -20,10 +20,10 @@ echo ""
 user_group=$2
 echo ""
 
-if ["$user_group" == "hulchenko"]
+if [ "$user_group" == "hulchenko" ]
 then
 	echo "Vadym, configure the server"
-elif ["$user_group" == "admin"]
+elif [ "$user_group" == "admin" ]
 then
 	echo "Administrator, configure the server"
 else
