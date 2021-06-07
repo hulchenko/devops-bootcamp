@@ -12,7 +12,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin #authorization details
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
-      - mongo-data:/data/db # storage or db
+      - mongo-data:/data/db # replicates all data between two >> [local storage location]:[remote volume storage path (/data/db is mongoDB default location)]
   mongo-express:
     image: mongo-express
     ports:

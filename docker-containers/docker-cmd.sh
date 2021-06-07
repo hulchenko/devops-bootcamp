@@ -7,6 +7,7 @@
 #	-p 6000:6379 (bind host port to container port)(only one can be bind to the same local port, ex: -p 27017:27017(MongoDB default port))
 #	--name <CUSTOM NAME> (to rename a container)
 #   -e (environment variables)
+#   -v (volume, to indicate directory to the remote volume, ex: -v /home/mount/data:/var/lib/mysql/data [local directory]:[remote volume directory])
  
 # docker run <IMAGE NAME>:4.0 (run specific version, in this case v.4.0)
 
