@@ -1,27 +1,16 @@
-package com.example;
+import com.example.Application;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javax.annotation.PostConstruct;
+public class AppTest {
 
-@SpringBootApplication
-public class Application {
+    @Test
+    public void testApp() {
+        Application myApp = new Application();
 
-    public static void main(String[] args)
-    {
-        SpringApplication.run(Application.class, args);
+        String result = myApp.getStatus();
+
+        assertEquals("OK", result);
     }
 
-    @PostConstruct
-    public void init()
-    {
-        Logger log = LoggerFactory.getLogger(Application.class);
-        log.info("Java app started");
-    }
-
-    public String getStatus() {
-        return "OK";
-    }
 }
