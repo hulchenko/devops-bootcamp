@@ -24,4 +24,4 @@ cat /var/jenkins_home/secrets/initialAdminPassword (to get the password)
    bash nodesource_setup.sh (to install NodeSource from the script)
    apt install nodejs (npm and node inside of jenkins container)
 
-### Creating a Job (to automate workflow):
+### Creating a Pipeline Job:
