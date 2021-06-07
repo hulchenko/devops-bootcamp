@@ -24,3 +24,5 @@
 # docker network create <NETWORK_NAME>
 
 # docker-compose -f docker-compose.yaml up (run containers straight from compose file, [up - is to RUN all provided containers; down - is to STOP and REMOVE all provided containers])
+
+# docker volume ls (to see local volume data storage)
