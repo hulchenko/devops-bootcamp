@@ -36,6 +36,7 @@ let databaseName = 'my-db';
 
 app.post('/update-profile', function (req, res) {
   let userObj = req.body;
+  console.log('Hello World!');
 
   MongoClient.connect(
     mongoUrlLocal,
