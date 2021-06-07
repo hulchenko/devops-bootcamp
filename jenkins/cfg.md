@@ -5,8 +5,7 @@ setup firewall, connect to VM
 ssh root@<VM ip>
 apt update (always on new machine/container)
 apt install docker.io
-install jenkins container on the VM
-docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts (8080 bind local machine port to vm's port, 50000 is for jenkins cluster, jenkins/jenkins:lts is a jenkins server)
+docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts (installing jenkins container on the VM: 8080 bind local machine port to vm's port, 50000 is for jenkins cluster, jenkins/jenkins:lts is a jenkins server)
 in browser window: <VM ip>:8080
 initial password location: /var/jenkins_home/secrets/initialAdminPassword (inside the container)
 docker exec -it 43184f8cf266 bash (login to the container with container ID)
