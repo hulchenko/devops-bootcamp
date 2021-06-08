@@ -26,7 +26,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword (to get the password)
 
 ### Creating a Pipeline Job:
 
-pom.xml
+pom.xml (equiv to package.json for Node.js)
 Jenkinsfile:
 
 1.  <VM ip>:<port>/env-vars.html list of jenkins env vars
@@ -48,3 +48,8 @@ Jenkinsfile:
 Freestyle (for single task: Test, Build, Deploy)
 Pipeline (for combined tasks, with GUI timeline, with 1 branch)
 Multi-Branch Pipeline (for combined tasks and multiple branches)
+
+### Versioning(Maven example for pom.xml file):
+
+mvn build-helper:parse-version versions:set \
+ -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit (will increase incremental version by 1. Ex: 1.0.0 > 1.0.1)
