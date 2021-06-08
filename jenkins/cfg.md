@@ -25,3 +25,26 @@ cat /var/jenkins_home/secrets/initialAdminPassword (to get the password)
    apt install nodejs (npm and node inside of jenkins container)
 
 ### Creating a Pipeline Job:
+
+pom.xml
+Jenkinsfile:
+
+1.  <VM ip>:<port>/env-vars.html list of jenkins env vars
+2.  post {} (attribute to execute script after all stages executed):
+    1. always (regardless of stage outcome)
+    2. success (if true)
+    3. failure (if false)
+3.  stage('test'){when { expression {BRANCH_NAME == 'dev' || BRANCH_NAME == 'master' }}steps{echo 'Hello World!'}} (the rest of test will run only if 'when' part met)
+4.  environment {NEW_VERSION = '1.5.5'} (to define custom environment variables, env vars will be available to ALL stages in pipeline. NEW_VERSION is an example):
+    1.  env vars has to be indicated within double quotes, ex: echo "This is version: ${NEW_VERSION})
+    2.  credentials can be provided within file, if credentials plugin installed(can be system or global):
+        1.  Dashboard > Manage Jenkins > Manage Credentials > Scoped to Jenkins > global > Add Credentials
+        1.  SERVER_CREDENTIALS = credentials('<credentials-id>')
+5.  tools { maven 'Maven' } (attribute to access tools for the project, only 3 available: gradle, maven, jdk)
+6.  parameters {} (for extra custom configuration)
+
+### Types of Jobs:
+
+Freestyle (for single task: Test, Build, Deploy)
+Pipeline (for combined tasks, with GUI timeline, with 1 branch)
+Multi-Branch Pipeline (for combined tasks and multiple branches)
