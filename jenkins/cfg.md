@@ -53,3 +53,7 @@ Multi-Branch Pipeline (for combined tasks and multiple branches)
 
 mvn build-helper:parse-version versions:set \
  -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit (will increase incremental version by 1. Ex: 1.0.0 > 1.0.1)
+
+### Groovy Documentation:
+
+http://www.groovy-lang.org/documentation.html
