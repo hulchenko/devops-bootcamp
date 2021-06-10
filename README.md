@@ -1,4 +1,4 @@
-# TechWorld with Nana. DevOps Bootcamp.
+# DevOps Bootcamp.
 
 ## Content:
 
