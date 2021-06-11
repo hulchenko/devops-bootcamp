@@ -12,7 +12,16 @@ resource "aws_instance" "my_webserver" {
     ami = "ami-0d8d212151031f51c"
     instance_type = "t2.micro"
     vpc_security_group_ids = [aws_security_group.my_webserver_security_group.id] # bind security group to the resource
-    user_data = file("user_data.sh") # pulling data from the sh file
+    /* user_data = <<EOF
+    #!/bin/bash
+    echo "Hello World!"
+    EOF*/
+    # user_data = file("user_data.sh") # pulling data from the sh file
+    user_data = templatefile("user_data.sh.tpl", {
+        first_name = "Vadym",
+        last_name = "Hulchenko",
+        names = ["Bailey", "Tony"]
+    })
 }
 
 resource "aws_security_group" "my_webserver_security_group" {
