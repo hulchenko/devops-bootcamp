@@ -8,6 +8,10 @@ provider "aws" {
     region = "us-east-2"
 }
 
+resource "aws_eip" "my_static_ip"{ // assigning elastic ip to the instance
+  instance = aws_instance.my_webserver.id
+}
+
 resource "aws_instance" "my_webserver" {
     ami = "ami-0d8d212151031f51c"
     instance_type = "t2.micro"
@@ -22,10 +26,25 @@ resource "aws_instance" "my_webserver" {
         last_name = "Hulchenko",
         names = ["Bailey", "Tony"]
     })
+
+      lifecycle {
+  // prevent_destroy = true -> prevent terraform from destroying instances on change
+  // ignore_changes = ["ami", "user_data"] -> prevent terraform from destroying instances on change of indicated parameters
+  create_before_destroy = true
+  }
+
+  depends_on = [aws_instance.my_webserver_app] # will be built after the second instance created (destroy will happen in opposite sequence too)
+}
+
+resource "aws_instance" "my_webserver_app" {
+    ami = "ami-0d8d212151031f51c"
+    instance_type = "t2.micro"
+    vpc_security_group_ids = [aws_security_group.my_webserver_security_group.id]
 }
 
 resource "aws_security_group" "my_webserver_security_group" {
   name        = "WebServer Security Group"
+
 
   ingress {
     from_port        = 80
@@ -52,4 +71,5 @@ resource "aws_security_group" "my_webserver_security_group" {
   tags = {
     Name = "WebServer Security Group"
   }
+
 }
