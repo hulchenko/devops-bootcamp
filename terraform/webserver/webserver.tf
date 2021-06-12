@@ -73,3 +73,7 @@ resource "aws_security_group" "my_webserver_security_group" {
   }
 
 }
+
+data "aws_caller_identity" "current" {}
+
+data "aws_region" "current" {}
