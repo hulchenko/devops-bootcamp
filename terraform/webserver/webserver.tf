@@ -5,7 +5,7 @@
 provider "aws" {
     access_key = "${var.access_key}"
     secret_key = "${var.secret_key}"
-    region = "us-east-2"
+    region = var.region
 }
 
 resource "aws_eip" "my_static_ip"{ // assigning elastic ip to the instance
@@ -14,8 +14,9 @@ resource "aws_eip" "my_static_ip"{ // assigning elastic ip to the instance
 
 resource "aws_instance" "my_webserver" {
     ami = "ami-0d8d212151031f51c"
-    instance_type = "t2.micro"
+    instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.my_webserver_security_group.id] # bind security group to the resource
+    monitoring = var.enable_detailed_monitoring
     /* user_data = <<EOF
     #!/bin/bash
     echo "Hello World!"
@@ -38,27 +39,24 @@ resource "aws_instance" "my_webserver" {
 
 resource "aws_instance" "my_webserver_app" {
     ami = "ami-0d8d212151031f51c"
-    instance_type = "t2.micro"
+    instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.my_webserver_security_group.id]
+    tags = var.general_tags
 }
 
 resource "aws_security_group" "my_webserver_security_group" {
-  name        = "WebServer Security Group"
 
 
-  ingress {
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
+dynamic "ingress" {
+  for_each = var.allow_ports
+    content {
+      from_port        = ingress.value
+      to_port          = ingress.value
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+    }
+}
 
-    ingress {
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
 
   egress {
     from_port        = 0
@@ -68,9 +66,7 @@ resource "aws_security_group" "my_webserver_security_group" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = {
-    Name = "WebServer Security Group"
-  }
+  tags = merge(var.general_tags, { Name = "WebServer Security Group"}) # add tags variable + specifically set value 
 
 }
 
