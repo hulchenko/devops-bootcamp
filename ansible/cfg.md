@@ -1,5 +1,20 @@
 <!-- Amazon Linux 2 -->
 
+## Commands:
+
+ansible-inventory --list (list all created groups, servers, variables)
+ansible-inventory --graph (to show graph of everything)
+ansible all --list-hosts (list all servers)
+ansible all -m copy -a "src=hello.txt dest=/home" -b (copy file from main to all other indicated hosts)
+ansible all -m shell -a "ls /home" -b (check hosts' files in the indicated folder)
+ansible all -m get_url -a "url=https://collectors.sumologic.com/rest/download/linux/64 dest=/home" -b (download files onto servers)
+ansible all -m file -a "path=/home/SumoCollector_linux_amd64_19_338-5.sh state=absent" -b (to remove the file)
+ansible all -m yum -a "name=httpd state=installed" -b (to install apps)
+ansible all -m yum -a "name=httpd state=removed" -b (to uninstall apps)
+ansible all -m service -a "name=httpd state=started enabled=yes" -b (to run a service)
+ansible all -m uri -a "url=http://www.google.ca return_content=yes" (read and get content from the url)
+ansible staging_servers -m shell -a "ls /var" -v(can be 1-5: -vvvvv for debugging)
+
 <!-- sudo amazon-linux-extras install ansible2 -->
 
 ### Installation:
