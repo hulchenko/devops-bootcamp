@@ -1,0 +1,23 @@
+---
+- name: Install Apache and Upload my web page
+  hosts: all
+  become: yes # root user
+
+  vars:
+    source_file: ./website/index.html
+    destin_file: /var/www/html
+
+  tasks:
+    - name: Install Apache Web Server
+      yum: name=httpd state=latest
+
+    - name: Copy website to servers
+      copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+      notify: Restart Apache # on file change notify handlers
+
+    - name: Start website and enable on boost
+      service: name=httpd state=started enabled=yes
+
+  handlers: # restart server on notification
+    - name: Restart Apache
+      service: name=httpd state=restarted

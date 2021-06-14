@@ -19,6 +19,10 @@ ansible staging_servers -m shell -a "ls /var" -v(can be 1-5: -vvvvv for debuggin
 
 ### Installation:
 
+sudo amazon-linux-extras install ansible2
+
+### Optional:
+
 sudo su
 yum update -y
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
