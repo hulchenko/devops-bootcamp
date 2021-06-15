@@ -24,6 +24,17 @@ resource "aws_instance" "my_instance" {
     }
 } 
 
+resource "aws_instance" "my_ubuntu" {
+  key_name = "key_june13"
+  ami = "ami-00399ec92321828f5"
+  instance_type = var.instance_type
+  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+  tags = {
+    Name = "Ubuntu"
+    Owner = "Vadym Hulchenko"
+  }
+}
+
 resource "aws_security_group" "my_security_group" {
     
 

@@ -14,6 +14,7 @@ ansible all -m yum -a "name=httpd state=removed" -b (to uninstall apps)
 ansible all -m service -a "name=httpd state=started enabled=yes" -b (to run a service)
 ansible all -m uri -a "url=http://www.google.ca return_content=yes" (read and get content from the url)
 ansible staging_servers -m shell -a "ls /var" -v(can be 1-5: -vvvvv for debugging)
+ansible <host_name> -m setup (to see info and list of vars for the host)
 
 <!-- sudo amazon-linux-extras install ansible2 -->
 
