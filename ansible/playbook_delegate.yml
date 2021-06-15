@@ -1,0 +1,39 @@
+---
+- name: Delegate Tasks
+  hosts: all
+  become: yes
+
+  vars:
+    mytext: 'Hello World'
+
+  tasks:
+    - name: Ping test
+      ping:
+
+
+  - name: Create file1
+    copy:
+      dest: /home/file1.txt
+      content: My text says {{ mytext }}
+    delegate_to: linux1 # command will run only on linux1
+
+  - name: Deregister server from Load Balancer
+    shell: echo This server {{ inventory_hostname }} was deregistered from the Load Balancer, node name is {{ ansible_nodename }} >> /home/log.txt
+    delegate_to: 127.0.0.1 # physically run program on main/master host (but the output would be from all of the servers)
+  
+  - name: Reboot my servers
+    shell: sleep 3 && reboot now
+    async: 1
+    poll: 0
+
+  - name: Wait till servers come up online
+    wait_for:
+        host: "{{ inventory_hostname }}"
+        state: started
+        delay: 5
+        timeout: 40
+    delegate_to: 127.0.0.1 # local host would 
+  
+  - name: Update DataBase
+    shell: echo updating database...
+    run_once: true # will run once on one host only, starting with first

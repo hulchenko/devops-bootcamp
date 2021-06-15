@@ -20,7 +20,7 @@
   tasks:
     - name: Check and print Linux Version
       debug: var=ansible_os_family
-
+      delegate_to: linux2 # will forward this task, only and specifically to linux2 host bypassing "hosts: all"
     - block: # ========= RedHat BLOCK =========
         - name: Install Apache Web Server for RedHat
           yum: name=httpd state=latest
