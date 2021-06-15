@@ -1,0 +1,23 @@
+---
+- name: Error Handling
+  hosts: all
+  any_errors_fatal: true # stops further execution on ALL hosts if any of the hosts error out
+  become: yes
+
+  tasks:
+    - name: Task 1
+      yum: name=nonexistentapp state=latest
+      ignore_errors: yes # if Task 1 errors out - the rest of tasks will continue their executions
+
+    - name: Task 2
+    shell: echo Hello World!
+    register: results
+    failed_when: "'World' in results.stdout" # selective failure on command output
+  # failed_when: results.rc == 0 example of return code line, where 0 is successful, while we turn it into a failure in our case
+
+    - debug:
+        var: results
+
+    
+    - name: Task 3
+    shell: echo Hello World 2
