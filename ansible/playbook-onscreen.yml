@@ -1,0 +1,13 @@
+---
+- name: Check directory on machine
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: check and print directory
+      command: ls -a /var/www/html/
+      register: output
+
+    - name: Print on screen
+      debug:
+        var: output.stdout

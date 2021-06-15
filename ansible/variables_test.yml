@@ -28,7 +28,7 @@
         var: ansible_distribution
 
     - shell: uptime # function
-      register: results # input command into the result
+      register: results # save output results into the "result"
 
     - debug:
         var: results # show command's result
