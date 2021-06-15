@@ -2,6 +2,8 @@
 
 ## Commands:
 
+ansible-doc -l | grep ec2 (show list of commands for ec2)
+
 ansible-inventory --list (list all created groups, servers, variables)
 ansible-inventory --graph (to show graph of everything)
 ansible all --list-hosts (list all servers)
@@ -16,6 +18,21 @@ ansible all -m uri -a "url=http://www.google.ca return_content=yes" (read and ge
 ansible staging_servers -m shell -a "ls /var" -v(can be 1-5: -vvvvv for debugging)
 ansible <host_name> -m setup (to see info and list of vars for the host)
 ansible-playbook playbook.yml --extra-var "MYHOSTS=ALL_LINUX" (external variables upon request, that's if ansible hosts: "{{ MY HOSTS }}" and hosts.txt has [ALL_LINUX] section with hosts)
+
+<!-- regular files encryption -->
+
+ansible-vault create file.txt (password to encrypt)
+ansible-vault view file.txt (password to cat)
+ansible-vault edit file.txt (password to change)
+ansible-vault rekey file.txt (password to change password)
+
+<!-- yml files encryption -->
+
+ansible-vault encrypt playbook.yml
+ansible-vault decrypt playbook.yml
+
+ansible-playbook playbook.yml --ask-vault-pass (to execute playbook with password, otherwise it will error out)
+ansible-playbook playbook.yml --vault-password-file file.txt (to execute playbook with file, that contains password, without prompt)
 
 <!-- sudo amazon-linux-extras install ansible2 -->
 
