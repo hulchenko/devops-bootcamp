@@ -29,6 +29,9 @@
 
       when: ansible_os_family == "Debian"
 
+    - name:
+      template: src={{ source_folder }}/index.j2 dest={{ destin_folder }}/index.html mode=0555 # generates file with variables (j2 - jinja template)
+
     - name: Copy website to servers
       copy: src={{ item }} dest={{ destin_folder }} mode=0555
       with_fileglob: '{{ source_folder }}/*.*'

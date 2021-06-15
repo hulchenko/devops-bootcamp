@@ -15,6 +15,7 @@ ansible all -m service -a "name=httpd state=started enabled=yes" -b (to run a se
 ansible all -m uri -a "url=http://www.google.ca return_content=yes" (read and get content from the url)
 ansible staging_servers -m shell -a "ls /var" -v(can be 1-5: -vvvvv for debugging)
 ansible <host_name> -m setup (to see info and list of vars for the host)
+ansible-playbook playbook.yml --extra-var "MYHOSTS=ALL_LINUX" (external variables upon request, that's if ansible hosts: "{{ MY HOSTS }}" and hosts.txt has [ALL_LINUX] section with hosts)
 
 <!-- sudo amazon-linux-extras install ansible2 -->
 
