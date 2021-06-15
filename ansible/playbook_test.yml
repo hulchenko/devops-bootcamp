@@ -1,6 +1,6 @@
 ---
 - name: Install Apache and Upload my web page
-  hosts: all
+  hosts: all # all EC2s
   become: yes # root user
 
   vars:

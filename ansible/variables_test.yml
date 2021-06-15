@@ -1,0 +1,34 @@
+---
+- name: Variables Practice
+  hosts: all
+  become: yes
+
+  vars:
+    message1: Hello
+    message2: World
+    secret: super_puper_password
+
+  tasks:
+    - name: Print Secret Variable
+      debug:
+        var: secret
+
+    - debug:
+        msg: 'Secret password is: {{ secret }}'
+
+    - debug:
+        msg: 'Owner of this server is {{ owner }}'
+
+    - set_fact: full_message="{{ message1 }} {{ message2 }} from {{ owner }}"
+
+    - debug:
+        var: full_message
+
+    - debug:
+        var: ansible_distribution
+
+    - shell: uptime # function
+      register: results # input command into the result
+
+    - debug:
+        var: results # show command's result
