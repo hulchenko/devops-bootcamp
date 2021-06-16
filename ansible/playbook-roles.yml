@@ -1,3 +1,5 @@
+# To init template, run -> ansible-galaxy init <template_name>
+# To use existing, created template from Galaxy -> ansible-galaxy <package role name>
 ############################## START: only this section stays in playbook.yml file ##############################
 ---
 - name: Install Apache and Upload my web page

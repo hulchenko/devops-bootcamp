@@ -1,3 +1,7 @@
+# IF "msg": "boto required for this module"
+# THEN sudo /usr/bin/python -m pip install boto AND sudo /usr/bin/python -m easy_install pip
+
+# while hosts.txt -> [local] localhost
 ---
 - name: Create AWS EC2 Instance
   hosts: local
