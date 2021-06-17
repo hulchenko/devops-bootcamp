@@ -6,3 +6,5 @@ service httpd start
 chkconfig httpd on # turn on services
 cd /var/www/html
 echo "<html><h1>Hello World!</h1></html>" >> index.html
+
+# <<-EOT
