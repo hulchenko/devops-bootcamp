@@ -1,6 +1,6 @@
 # to avoid using sudo commands every time, use: sudo usermod -aG docker $USER
 # docker pull <image_name> -> downloads an image
-# docker start <image_name>
+# docker start <container_ID>
 # docker run (docker pull + docker start)
 # docker run <IMAGE NAME> (pulls the latest version of an image & starts the container) 
 #	-d (detached mode / background run)
