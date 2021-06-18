@@ -10,7 +10,7 @@ to test -> [* * * * * logger test] <- every minute
 
 sudo cat /var/log/messages (to see the output)
 
-<!--------------------------------------------->
+<!----------------------create simple backup----------------------->
 
 [00 08,16 * * 1-5] sudo bash /home/ec2-user/compress.sh (every weekday at 8 am and 4 pm compress indicated file)
 
