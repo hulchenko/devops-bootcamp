@@ -13,7 +13,7 @@ data "aws_ami" "latest_al2" {
 }
 
 resource "aws_instance" "my_instance" {
-    count = 3
+    count = 1
     key_name = "key_june13"
     ami = data.aws_ami.latest_al2.id
     instance_type = var.instance_type
