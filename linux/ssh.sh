@@ -11,7 +11,10 @@
 # if keys are not in default folder/default name:
 # ssh -i .ssh/id_rsaTEST(absolute path to the key file) root@67.205.171.179
 
-# to copy files to the remote server, root directory: scp(secure copy):
+# to copy files to the remote server, scp(secure copy):
 # scp test.sh root@67.205.171.179:/root
 # OR
-# scp -i .ssh/id_rsaTEST(absolute path to the key file) test.sh root@67.205.171.179:/root
+# scp -i .ssh/id_rsaTEST(absolute path to the key file) filename.txt user@ip-address:/directory-to-place-file
+
+
+# ssh-copy-id user@ip-address (to copy PUBLIC key from the machine to the indicated host)
