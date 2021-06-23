@@ -56,7 +56,7 @@ sudo systemctl start firewalld
 
 <!-- create nagiosadmin user account -->
 
-htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin (-c to overwrite if exists)
 
 <!-- start Apache server and test nagios -->
 
