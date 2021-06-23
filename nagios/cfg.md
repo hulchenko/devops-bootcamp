@@ -8,7 +8,7 @@ sudo setenforce 0 <!-- to temporary disable SELINUX -->
 
 install all tools from tools.md
 
-wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.3.tar.gz
+wget https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.3.tar.gz
 
 tar zxvf nagios-4.4.3.tar.gz
 
@@ -58,10 +58,42 @@ sudo systemctl start firewalld
 
 htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
 
-<!-- start apache and nagios -->
+<!-- start Apache server and test nagios -->
 
 sudo systemctl start httpd
 
 sudo systemctl start nagios
 
-http://<IP_ADDRESS / DOMAIN_NAME>/nagios (to check if its working)
+http://<IP_ADDRESS / DOMAIN_NAME>/nagios (to check if its working) (also check Current Status > Hosts > localhost will 'DOWN' and red)
+
+<!-- install nagios plugins -->
+
+<!-- dependancies for nagios plugins-->
+
+sudo yum install -y gcc glibc glibc-common make gettext automake autoconf wget openssl-devel net-snmp net-snmp-utils epel-release
+
+sudo yum install -y perl-Net-SNMP
+
+<!------------------------------------->
+
+wget --no-check-certificate https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
+
+sudo tar zxvf release-2.2.1.tar.gz
+
+<!-- Install Nagios Core from Source -->
+
+cd nagios-plugins-release-2.2.1
+
+sudo bash tools/setup
+
+sudo bash configure
+
+sudo make
+
+sudo make install
+
+<!-- final test -->
+
+http://<IP_ADDRESS / DOMAIN_NAME>/nagios (to check if its working) (also check Current Status > Hosts > localhost will 'UP' and running!)
+
+Host > Commands > Re-schedule the Next Check (to force status change)
