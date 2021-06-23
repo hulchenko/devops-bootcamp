@@ -1,4 +1,4 @@
-<!-- check for all 3 files to exist -->
+<!-- check for all 3 files are properly configured -->
 
 /usr/local/nagios/etc/objects
 

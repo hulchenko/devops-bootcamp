@@ -97,3 +97,7 @@ sudo make install
 http://<IP_ADDRESS / DOMAIN_NAME>/nagios (to check if its working) (also check Current Status > Hosts > localhost will be 'UP' and running!)
 
 Host > Commands > Re-schedule the Next Check (to force status change)
+
+<!-- Config files documentation -->
+
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectdefinitions.html
