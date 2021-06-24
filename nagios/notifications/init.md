@@ -17,3 +17,7 @@
       w. Warning
 
 3. Notification options MUST fall within notification_period (in our case: notification_period 24x7)
+
+<!-- MACROS DOCUMENTATION -->
+
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/macrolist.html
