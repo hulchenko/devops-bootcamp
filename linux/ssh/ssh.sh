@@ -18,3 +18,5 @@
 
 
 # ssh-copy-id user@ip-address (to copy PUBLIC key from the machine to the indicated host)
+
+/usr/local/nagios/libexec/check_by_ssh -H $HOSTADDRESS$ -i /home/ec2-user/.ssh/id_rsa -l ec2-user -C "/home/ec2-user/check_disk -w 99% -c 95% -p /"
