@@ -15,3 +15,11 @@ Terraform
 Python Porgramming & Automation
 
 Ansible
+
+Nagios
+
+Nginx
+
+Puppet
+
+Grafana
